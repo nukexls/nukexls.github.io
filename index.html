@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>LikeDeals.me</title>
+    <title>Filmogram</title>
 </head>
 
 <style>
@@ -118,26 +118,13 @@
 <body class="body">
     <div class="brand">
         <div class="bcon">
-            <img src="https://d1fdloi71mui9q.cloudfront.net/3EZfUhZHSjiXK6CaAd4z_BDs27D6j750EY3sM" alt="Profile Image" data-testid="ProfileImage" filter="none" display="block">
-
-            <h1 class="sc-AxiKw hfUWVJ"><a href="https://LikeDeals.me/en/">LikeDeals.me</a></h1>
-
-
+           
+       
         </div>
     </div>
 
     <div id="content"></div>
 
-    <div class="lang">
-        <a href="/">EN</a>
-        <a href="/es.html">ES</a>
-        <a href="/it.html">IT</a>
-        <a href="/de.html">DE</a>
-        <a href="/hr.html">HR</a>
-        <a href="/tr.html">TR</a>
-        <a href="/uk.html">UK</a>
-        <a href="/fr.html">FR</a>
-    </div>
 
 
 
@@ -146,33 +133,3 @@
 </html>
 
 
-<script>
-    var allow = ['en', 'es', 'it', 'de', 'fr', 'tr', 'uk', 'hr']
-    var lang = document.location.href.split('/').pop().split('.')
-    lang = (lang[0] != '' && allow.indexOf(lang[0]) != -1 ? lang[0] : 'en')
-
-
-    const RSS_URL = 'https://likedeals.me/' + lang + '/rss.xml';
-
-    fetch(RSS_URL)
-        .then(response => response.text())
-        .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
-        .then(data => {
-            console.log(data);
-            const items = data.querySelectorAll("item");
-            let html = '';
-            items.forEach(el => {
-                html += `
-        <article>
-
-          <h2>
-            <a href="${el.querySelector("link").innerHTML}" target="_blank">
-              ${el.querySelector("title").innerHTML}
-            </a>
-          </h2>
-        </article>
-      `;
-            });
-            document.getElementById("content").insertAdjacentHTML("beforeend", html);
-        });
-</script>
